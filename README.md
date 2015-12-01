@@ -2,7 +2,8 @@ CreditScoreUI.hpp :
 
 #ifndef CreditScoreUI_hpp
 #define CreditScoreUI_hpp
-  class CreditScoreUI
+
+class CreditScoreUI
  {
     public:
     CreditScoreBean EnterDetails();
@@ -14,8 +15,10 @@ CreditScoreUI.cpp :
 
 #include"CreditScoreUI.hpp"
 #include<iostream>
+
 CreditScoreBean bean;
 int ssn,pid;
+
 CreditScoreBean CreditScoreUI :: EnterDetails()
 {
 cout<<"Enter Your ssn";
@@ -24,7 +27,8 @@ cout<<"Enter the policy id";
 cin>>pid;
 bean.setssn(ssn);
 bean.setpid(pid);
-return bean;
+return bean;  //Now this object of CreditScoreBean has ssn and pid info
+
 }
 
 
@@ -33,7 +37,8 @@ CreditScoreBean.hpp :
 
 #ifndef CreditScoreBean_hpp
 #define CreditScoreBean_hpp
-  class CreditScoreBean
+
+class CreditScoreBean
  {
     public:
     void setssn(int);
@@ -49,7 +54,9 @@ CreditScoreBean.cpp :
 
 #include"CreditScoreBean.hpp"
 #include<iostream>
+
 int l_ssn,l_pid;
+
 void CreditScoreBean:: setssn(int ssn)
 {
   l_ssn = ssn;
@@ -74,7 +81,8 @@ CreditScoreController.hpp :
 
 #ifndef CreditScoreController_hpp
 #define CreditScoreController_hpp
-  class CreditScoreController
+
+class CreditScoreController
  {
     public:
   void initiateCreditScoreCalculation(void);
@@ -86,12 +94,16 @@ CreditScoreController.hpp :
 CreditScoreController.cpp :
 
 #include"CreditScoreController.hpp"
-#include"CreditScoreController.hpp"
+#include"CreditScore.hpp"
+#include"CreditScoreBean.hpp"
+#include"CreditScoreUI.hpp"
 #include<iostream>
+
 CreditScoreBean bean;
 CreditScoreUI view;
 CreditScore md;
 int score;
+
 void CreditScoreController :: initiateCreditScoreController(void)
 {
   bean = view.EnterDetails();
@@ -102,7 +114,8 @@ CreditScore.hpp :
 
 #ifndef CreditScore_hpp
 #define CreditScore_hpp
-  class CreditScore
+
+class CreditScore
  {
     public:
   int CalcScore(CreditScoreBean);
@@ -115,12 +128,14 @@ CreditScore.cpp :
 
 #include"CreditScore.hpp"
 #include<iostream>
+
 int l_ssn,l_pid;
-int CreditScore::CalcScore(CreditScoreBean bean)
+
+int CreditScore::CalcScore(CreditScoreBean bean)//Just one Bean is being used Other Beans are to be included here....
 {
 l_ssn = bean.getssn();
 l_pid = bean.getpid();
-
+//Now based on these ssn and pid stored in locals how do we fetch the remaining parameters from the other Beans
 }
 
 
